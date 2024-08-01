@@ -14,15 +14,15 @@
 //7) Create Reset functionality.
 
 /*-------------------------------- Constants --------------------------------*/
-let board = ""
-let turn = ""
-let winner = ""
-let tie = ""
+let board 
+let turn 
+let winner 
+let tie 
 
 
 /*---------------------------- Variables (state) ----------------------------*/
 /*------------------------ Cached Element References ------------------------*/
-const squareEls = document.querySelector(".board")
+const squareEls = document.querySelectorAll(".sqr")
 const messageEl = document.querySelector("#message")
 console.log(squareEls)
 console.log(messageEl)
@@ -35,7 +35,52 @@ console.log(messageEl)
 init()
 
 function init (){
-     console.log("check") 
+    console.log("check") 
+    //! remeber reset the string!!!
+    board = [
+        "X", "O", "X", 
+        "O", "X", "O", 
+        "", "", "",]
+        
+        turn = "X"
+        winner = false
+        tie = false
+        
+    render()
+}
+ 
+console.log({board, turn, winner, tie})
+     
+function render(){
+    updateMessage()
+    updateBoard()
+    
+}
+
+
+function updateBoard() {
+    board.forEach((element, index) => {
+        // console.log(element)
+        //* assign the element in board to each squareEl's textContent and show it will automatically on the screen
+        if (element === "O") {
+            squareEls[index].textContent = "O"
+        } else if (element === "X") {
+            squareEls[index].textContent = "X"
+        } else { 
+            squareEls[index].textContent = ""
+        }
+    
+        // console.log(squareEls[index])
+    
+    })
+
+}
+
+function updateMessage() {
+    //* if winner is ture, message up date to you win! the winner is based on the turn
+    //* if winner is false || tie is true, message ypdate to it's a tie!
+    //* if bothe winner and tie are false, message updated to it's your turn (the current turn)
+
 }
 
 
