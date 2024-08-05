@@ -24,7 +24,7 @@ let tie
 /*------------------------ Cached Element References ------------------------*/
 const squareEls = document.querySelectorAll(".sqr")
 const messageEl = document.querySelector("#message")
-console.log(messageEl)
+// console.log(messageEl)
 
 const winningCombos = [
     [0, 1, 2],
@@ -105,11 +105,18 @@ function handleClick (event) {
         return 
     }
     // code to run when the suquare is empty below
-   
+    placePiece (squareIndex) 
 }
 
 squareEls.forEach((squareEl) => {
     squareEl.addEventListener("click", handleClick)
 
 })
+
+function placePiece(index) {
+    board[index] = turn
+    // console.log(board)
+}
+
+
 
