@@ -43,11 +43,7 @@ const winningCombos = [
 
 /*-------------------------------- Functions --------------------------------*/
 init()
-console.log(squareEls[0].textContent)
-
-function init (){
-    console.log("check") 
-    //! remeber reset the string!!!
+function init () {
     board = [
         "", "", "", 
         "", "", "", 
@@ -61,7 +57,9 @@ function init (){
     }
     // console.log({board, turn, winner, tie})
     
-     
+//! why do we even need render() funcion??
+//* reduce the code we write, more readale, anytime we need update the DOM aka. when we want paint something on the screen, we witer finctin and put them into render()  
+
 function render() {
     updateMessage()
     updateBoard()
@@ -91,7 +89,7 @@ function updateMessage() {
     //* if winner is false || tie is true, message update to it's a tie!
     //* if bothe winner and tie are false, message updated to it's your turn (the current turn)
     if (winner === true) {
-        messageEl.textContent = `Congrats! ${true}, you win!!`
+        messageEl.textContent = `Congrats! ${turn}, you win!!`
     } else if ((winner === false) && (tie !== true)) {
         messageEl.textContent = `"${turn}", it is your turn!`
     } else {
@@ -100,7 +98,6 @@ function updateMessage() {
 }
 
 
-/*----------------------------- Event Listeners -----------------------------*/
 function handleClick (event) {
     const squareIndex =  event.target.id
     if((squareEls[squareIndex].textContent === "X" || squareEls[squareIndex].textContent === "O") || winner ){
@@ -114,25 +111,24 @@ function handleClick (event) {
     render()
 }
 
-squareEls.forEach((squareEl) => {
-    squareEl.addEventListener("click", handleClick)
-
-})
-resetBtnEl.addEventListener("click",init)
 
 function placePiece(index) {
     board[index] = turn
     // console.log(board)
 }
 
+
 function checkForWinner () {
     winningCombos.forEach((winningCombo) => {
-        if (board[winningCombo[0]] !== "" && (board[winningCombo[0]] === board[winningCombo[1]] === board[winningCombo[2]])) {
+        if (
+            board[winningCombo[0]] !== "" && 
+            (board[winningCombo[0]] === board[winningCombo[1]]) && 
+            (board[winningCombo[0]] === board[winningCombo[2]])
+        ) {
             winner = true
         }
     })
-    console.log(winner)
-    
+    console.log(winner) 
 }
 
 function checkForTie () {
@@ -161,3 +157,12 @@ function switchPlayerTurn() {
     }
     console.log(turn)
 }
+
+/*----------------------------- Event Listeners -----------------------------*/
+
+squareEls.forEach((squareEl) => {
+    squareEl.addEventListener("click", handleClick)
+
+})
+
+resetBtnEl.addEventListener("click",init)
