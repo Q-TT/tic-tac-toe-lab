@@ -57,7 +57,7 @@ function init (){
         
         render()
     }
-    console.log({board, turn, winner, tie})
+    // console.log({board, turn, winner, tie})
     
      
 function render() {
@@ -90,10 +90,10 @@ function updateMessage() {
     //* if bothe winner and tie are false, message updated to it's your turn (the current turn)
     if (winner === true) {
         messageEl.textContent = `Congrats! ${true}, you win!!`
-    } else if ((winner === false) && (tie === true)) {
-        messageEl.textContent = "It's a tie!"
-    } else {
+    } else if ((winner === false) && (tie !== true)) {
         messageEl.textContent = `"${turn}", it is your turn!`
+    } else {
+        messageEl.textContent = "It's a tie!"
     }
 }
 
@@ -129,6 +129,7 @@ function checkForWinner () {
         }
     })
     console.log(winner)
+    
 }
 
 function checkForTie () {
@@ -137,7 +138,9 @@ function checkForTie () {
     }
     board.forEach((square) => {
         if (square === "") {
-            tie = true
+            tie = false
+        } else {
+            tie === true
         }
     })
     console.log(tie)
