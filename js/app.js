@@ -24,7 +24,9 @@ let tie
 /*------------------------ Cached Element References ------------------------*/
 const squareEls = document.querySelectorAll(".sqr")
 const messageEl = document.querySelector("#message")
+const resetBtnEl = document.querySelector("button")
 // console.log(messageEl)
+// console.log(resetBtnEl)
 
 const winningCombos = [
     [0, 1, 2],
@@ -116,6 +118,7 @@ squareEls.forEach((squareEl) => {
     squareEl.addEventListener("click", handleClick)
 
 })
+resetBtnEl.addEventListener("click",init)
 
 function placePiece(index) {
     board[index] = turn
