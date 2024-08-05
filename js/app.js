@@ -47,8 +47,8 @@ function init (){
     console.log("check") 
     //! remeber reset the string!!!
     board = [
-        "X", "O", "X", 
-        "O", "X", "O", 
+        "", "", "", 
+        "", "", "", 
         "", "", "",]
         
         turn = "X"
@@ -106,6 +106,10 @@ function handleClick (event) {
     }
     // code to run when the suquare is empty below
     placePiece (squareIndex) 
+    checkForWinner()
+    checkForTie()
+    switchPlayerTurn()
+    render()
 }
 
 squareEls.forEach((squareEl) => {
@@ -118,5 +122,36 @@ function placePiece(index) {
     // console.log(board)
 }
 
+function checkForWinner () {
+    winningCombos.forEach((winningCombo) => {
+        if (board[winningCombo[0]] !== "" && (board[winningCombo[0]] === board[winningCombo[1]] === board[winningCombo[2]])) {
+            winner = true
+        }
+    })
+    console.log(winner)
+}
 
+function checkForTie () {
+    if (winner === true) {
+        return
+    }
+    board.forEach((square) => {
+        if (square === "") {
+            tie = true
+        }
+    })
+    console.log(tie)
+}
 
+function switchPlayerTurn() {
+    if (winner == true) {
+        return
+    } else {
+        if(turn === "X") {
+            turn = "O"
+        } else if (turn === "O") {
+            turn = "X"
+        }
+    }
+    console.log(turn)
+}
