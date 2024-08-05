@@ -24,10 +24,19 @@ let tie
 /*------------------------ Cached Element References ------------------------*/
 const squareEls = document.querySelectorAll(".sqr")
 const messageEl = document.querySelector("#message")
-console.log(squareEls)
+console.log(squareEls[0])
 console.log(messageEl)
 
-
+const winningCombos = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7 ,8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ]
 
 
 
@@ -48,10 +57,10 @@ function init (){
         
     render()
 }
- 
 console.log({board, turn, winner, tie})
+ 
      
-function render(){
+function render() {
     updateMessage()
     updateBoard()
     
@@ -69,7 +78,6 @@ function updateBoard() {
         } else { 
             squareEls[index].textContent = ""
         }
-    
         // console.log(squareEls[index])
     
     })
@@ -78,9 +86,15 @@ function updateBoard() {
 
 function updateMessage() {
     //* if winner is ture, message up date to you win! the winner is based on the turn
-    //* if winner is false || tie is true, message ypdate to it's a tie!
+    //* if winner is false || tie is true, message update to it's a tie!
     //* if bothe winner and tie are false, message updated to it's your turn (the current turn)
-
+    if (winner === true) {
+        messageEl.textContent = `Congrats! ${true}, you win!!`
+    } else if ((winner === false) && (tie === true)) {
+        messageEl.textContent = "It's a tie!"
+    } else {
+        messageEl.textContent = `"${turn}", it is your turn!`
+    }
 }
 
 
