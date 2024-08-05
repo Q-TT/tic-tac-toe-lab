@@ -24,7 +24,6 @@ let tie
 /*------------------------ Cached Element References ------------------------*/
 const squareEls = document.querySelectorAll(".sqr")
 const messageEl = document.querySelector("#message")
-console.log(squareEls[0])
 console.log(messageEl)
 
 const winningCombos = [
@@ -36,12 +35,13 @@ const winningCombos = [
     [2, 5, 8],
     [0, 4, 8],
     [2, 4, 6]
-  ]
+]
 
 
 
 /*-------------------------------- Functions --------------------------------*/
 init()
+console.log(squareEls[0].textContent)
 
 function init (){
     console.log("check") 
@@ -55,10 +55,10 @@ function init (){
         winner = false
         tie = false
         
-    render()
-}
-console.log({board, turn, winner, tie})
- 
+        render()
+    }
+    console.log({board, turn, winner, tie})
+    
      
 function render() {
     updateMessage()
@@ -99,6 +99,17 @@ function updateMessage() {
 
 
 /*----------------------------- Event Listeners -----------------------------*/
+function handleClick (event) {
+    const squareIndex =  event.target.id
+    if((squareEls[squareIndex].textContent === "X" || squareEls[squareIndex].textContent === "O") || winner ){
+        return 
+    }
+    // code to run when the suquare is empty below
+   
+}
 
+squareEls.forEach((squareEl) => {
+    squareEl.addEventListener("click", handleClick)
 
+})
 
